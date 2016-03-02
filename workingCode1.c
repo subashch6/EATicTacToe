@@ -82,7 +82,7 @@ bool isSpaceEmpty(int positionX, int positionY)
 
 int* chooseMove()
 {
-	int move[2];
+	int move[2] = {0,0};
 
 	//Code to fill move
 
@@ -122,51 +122,51 @@ bool addPiece(int piece, int positionX, int positionY)
 */
 void displayBoard()
 {
-	for (int i = 0; i < 3; i = i + 1)
-  {
-  		char buffer1[16];
-  		char buffer2[16];
-  		char buffer3[16];
-  		snprintf(buffer1,16,"%d %d %d",board[i][0],board[i][1],board[i][0]);
-  		//snprintf(buffer2,16,"%d",board[i][1]);
-  		//snprintf(buffer3,16,"%d",board[i][2]);
-  		displayString(i*3,buffer1);
-  		//displayString(i*3,buffer2);
-  		//displayString(i*3,buffer3);
-  }
+	for (int i = 0; i < 3; i += 1)
+	{
+		char buffer[sizeof(int)*3 + sizeof(char)*2];
+		sprintf(buffer,"%d %d %d",board[i][0],board[i][1],board[i][2]);
+		displayString(i*3+4,buffer);
+	}
 }
 
 task main()
 {
-	displayBoard();
+	//displayBoard();
 
-	do
+	/*	do
+	{*/
+	int* myMove = chooseMove();
+	char buffer[sizeof(int)*2 + sizeof(char)];
+	sprintf(buffer,"%d %d",*myMove,*(myMove+1));
+	displayString(10,buffer);
+
+	if(numMoves%2)
 	{
-		if(numMoves%2 == 0)
-		{
-			int* myMove = chooseMove();
-			//addPiece(X,myMove[0],myMove[1]); //Player 2 places O
-		}
-		else
-		{
-			int* myMove = chooseMove();
-			//addPiece(O,myMove[0],myMove[1]); //Player 1 places X
-		}
-		checkBoardForWin();
+		addPiece(O,myMove[0],myMove[1]); //Player 2 places O
+	}
+	else
+	{
+		addPiece(X,0,0); //Player 1 places X
+	}
+	checkBoardForWin();
+	while(true)
+	{
 		displayBoard();
 	}
+	/*	}
 	while(!oWin && !xWin && numMoves < 8);
 
 	if(oWin == true)
 	{
-		//printf("Player two wins!");
+	//printf("Player two wins!");
 	}
 	else if(xWin == true)
 	{
-		//printf("Player one wins!");
+	//printf("Player one wins!");
 	}
 	else
 	{
-		//printf("It's a draw!");
-	}
+	//printf("It's a draw!");
+	}*/
 }
