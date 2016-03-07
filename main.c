@@ -11,6 +11,23 @@ int O = 4;
 int empty = 0;
 int board[3][3] = {{empty, empty, empty}, {empty, empty, empty}, {empty, empty, empty}};
 int move[2] = {0,0};
+vector2i* waysToWin[] ={{fillVec(0,0)},{fillVec(0,1)},{fillVec(0,2)},{fillVec(1,0)},{fillVec(1,1)},{fillVec(1,2)},
+	{fillVec(2,0)},{fillVec(2,1)},{fillVec(2,2)},{fillVec(0,0)},{fillVec(1,0)},{fillVec(2,0)},{fillVec(0,1)},{fillVec(1,1)},{fillVec(2,1)},
+	{fillVec(0,2)},{fillVec(1,2)},{fillVec(2,2)},{fillVec(0,0)},{fillVec(1,1)},{fillVec(2,2)},{fillVec(0,2)},{fillVec(1,1)},{fillVec(2,0)}};
+
+struct vector2i
+{
+	int x;
+	int y;
+};
+
+struct vector2i fillVec(int q, int w)
+{
+	struct vector2i z;
+	z.x=q;
+	z.y=w;
+	return z;
+}
 /**
 * This function checks to see if a particular array has a winning combo.
 *
@@ -822,6 +839,17 @@ void chooseMove()
 	}
 	else
 	{
+		for(int i = 0; i<8; i++)
+		{
+			int x = board[wayToWin[3i].x][waysToWin[3i].y];
+			int y = board[wayToWin[3i+1].x][waysToWin[3i+1].y];
+			int z = board[wayToWin[3i+2].x][waysToWin[3i+2].y];
+			if(x+y+z == 1 || x+y+z == 4)
+			{
+
+			}
+		}
+		/
 		//Actual move algorithm code
 	}
 }
