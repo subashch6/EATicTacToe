@@ -915,9 +915,12 @@ void chooseMove()
 	{
 		for(int i = 0; i<8; i++)
 		{
-			int x = board[wayToWin[3i].x][waysToWin[3i].y];
-			int y = board[wayToWin[3i+1].x][waysToWin[3i+1].y];
-			int z = board[wayToWin[3i+2].x][waysToWin[3i+2].y];
+			winway a;
+			a = waysToWin[i];
+			int x = board[a.x.x][a.x.y];
+			int y = board[a.y.x][a.y.y];
+			int z = board[a.z.x][a.z.y];
+
 			if(x+y+z == 1 || x+y+z == 4)
 			{
 
