@@ -1,4 +1,84 @@
+typedef struct{
+	int x;
+	int y;
+}vector2i;
 
+typedef struct
+{
+	vector2i x;
+	vector2i y;
+	vector2i z;
+
+}winway;
+
+winway winway1;
+winway winway2;
+winway winway3;
+winway winway4;
+winway winway5;
+winway winway6;
+winway winway7;
+winway winway8;
+
+void setup()
+{
+	winway1.x.x=0;
+	winway1.x.y=0;
+	winway1.y.x=0;
+	winway1.y.y=1;
+	winway1.z.x=0;
+	winway1.z.y=2;
+
+	winway2.x.x=1;
+	winway2.x.y=0;
+	winway2.y.x=1;
+	winway2.y.y=1;
+	winway2.z.x=1;
+	winway2.z.y=2;
+
+	winway3.x.x=2;
+	winway3.x.y=0;
+	winway3.y.x=2;
+	winway3.y.y=1;
+	winway3.z.x=2;
+	winway3.z.y=2;
+
+	winway4.x.x=0;
+	winway4.x.y=0;
+	winway4.y.x=1;
+	winway4.y.y=0;
+	winway4.z.x=2;
+	winway4.z.y=0;
+
+	winway5.x.x=0;
+	winway5.x.y=1;
+	winway5.y.x=1;
+	winway5.y.y=1;
+	winway5.z.x=2;
+	winway5.z.y=1;
+
+	winway6.x.x=0;
+	winway6.x.y=2;
+	winway6.y.x=1;
+	winway6.y.y=2;
+	winway6.z.x=2;
+	winway6.z.y=2;
+
+	winway7.x.x=0;
+	winway7.x.y=0;
+	winway7.y.x=1;
+	winway7.y.y=1;
+	winway7.z.x=2;
+	winway7.z.y=2;
+
+	winway8.x.x=2;
+	winway8.x.y=0;
+	winway8.y.x=1;
+	winway8.y.y=1;
+	winway8.z.x=0;
+	winway8.z.y=2;
+
+}
 
 /**
 * Global Variables
@@ -11,23 +91,17 @@ int O = 4;
 int empty = 0;
 int board[3][3] = {{empty, empty, empty}, {empty, empty, empty}, {empty, empty, empty}};
 int move[2] = {0,0};
-vector2i* waysToWin[] ={{fillVec(0,0)},{fillVec(0,1)},{fillVec(0,2)},{fillVec(1,0)},{fillVec(1,1)},{fillVec(1,2)},
-	{fillVec(2,0)},{fillVec(2,1)},{fillVec(2,2)},{fillVec(0,0)},{fillVec(1,0)},{fillVec(2,0)},{fillVec(0,1)},{fillVec(1,1)},{fillVec(2,1)},
-	{fillVec(0,2)},{fillVec(1,2)},{fillVec(2,2)},{fillVec(0,0)},{fillVec(1,1)},{fillVec(2,2)},{fillVec(0,2)},{fillVec(1,1)},{fillVec(2,0)}};
+winway waysToWin[] ={winway1,winway2,winway3,winway4,winway5,winway6,winway7,winway8};
 
-struct vector2i
-{
-	int x;
-	int y;
-};
+bool addPiece(int piece,int positionY,int positionX);
+bool isSpaceEmpty(int positionX,int positionY);
+bool hasWon(int* array);
+bool checkBoardForWin();
+bool checkToWin();
+bool checkToBlockWin();
+void chooseMove();
+void displayBoard();
 
-struct vector2i fillVec(int q, int w)
-{
-	struct vector2i z;
-	z.x=q;
-	z.y=w;
-	return z;
-}
 /**
 * This function checks to see if a particular array has a winning combo.
 *
@@ -216,7 +290,7 @@ bool checkToWin()
 		}
 		else if(diagonal1[0]+diagonal1[1]+diagonal1[2] == X+X)
 		{
-			if(diagonal[0] == empty)
+			if(diagonal1[0] == empty)
 			{
 				move[0] = 0;
 				move[1] = 0;
@@ -387,7 +461,7 @@ bool checkToWin()
 		}
 		else if(diagonal1[0]+diagonal1[1]+diagonal1[2] == O+O)
 		{
-			if(diagonal[0] == empty)
+			if(diagonal1[0] == empty)
 			{
 				move[0] = 0;
 				move[1] = 0;
@@ -574,7 +648,7 @@ bool checkToBlockWin()
 		}
 		else if(diagonal1[0]+diagonal1[1]+diagonal1[2] == X+X)
 		{
-			if(diagonal[0] == empty)
+			if(diagonal1[0] == empty)
 			{
 				move[0] = 0;
 				move[1] = 0;
@@ -745,7 +819,7 @@ bool checkToBlockWin()
 		}
 		else if(diagonal1[0]+diagonal1[1]+diagonal1[2] == O+O)
 		{
-			if(diagonal[0] == empty)
+			if(diagonal1[0] == empty)
 			{
 				move[0] = 0;
 				move[1] = 0;
@@ -849,8 +923,9 @@ void chooseMove()
 
 			}
 		}
-		/
+
 		//Actual move algorithm code
+
 	}
 }
 
@@ -879,6 +954,7 @@ bool addPiece(int piece, int positionY, int positionX)
 		}
 	}
 }
+
 
 /**
 *
